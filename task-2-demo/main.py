@@ -48,3 +48,31 @@ async def create_offer(offer: models.OfferCreate, db: Session = Depends(get_db))
 @lru_cache(maxsize=32)
 def read_offers(db: Session = Depends(get_db)):
     return db.query(models.OfferDB).all()
+
+@app.get("/get_model_info")
+def get_model_info():
+    import pickle
+    model = pickle.load(open("model.pkl", "rb"))
+    features = model.feature_names_in_
+    return {feature : model.feature_importances_[i] for i, feature in enumerate(features)}
+
+@app.get("/model_retrain")
+def model_retrain():
+    from train import train_model, load_data, encode_features, FEATURES
+    from pathlib import Path
+
+    df = load_data('data/adresowo_warszawa_wroclaw.csv')
+    df_encoded = encode_features(df)
+
+    # Wybór featurów
+    X = df_encoded[FEATURES]
+    y = df_encoded['price_total_zl']
+
+    try: 
+        train_model(X, y)
+        Path("model.pkl").unlink()
+    except FileNotFoundError:
+        return {"message": "Model not found"}
+    
+    return {"message": "Model retrained", "X_test": X.shape, "y_test": y.shape}
+

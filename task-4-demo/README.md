@@ -1,57 +1,74 @@
-# Zadanie: Wdrożenie i testowanie serwisu predykcyjnego (ml-predictor)
+## Zadanie: Trening i monitorowanie modelu regresji liniowej w MLflow
 
-### Kontekst
-
-Masz już skonfigurowane środowisko w `docker-compose.yml`, które zawiera:
-
-* **mlflow** – serwer MLflow do monitorowania eksperymentów,
-* **ml-trainer** – komponent trenujący model i zapisujący go jako `model.pkl`.
-
-Twoim zadaniem jest **uruchomić i przetestować kontener `ml-predictor`**, który korzysta z wytrenowanego modelu i umożliwia wykonywanie predykcji.
+**Cel:**
+Nauczyć się trenować prosty model ML (regresja liniowa), logować parametry i metryki w **MLflow**, a następnie testować działanie modelu na przykładowych danych.
 
 ---
 
-### Krok 1. Analiza konfiguracji `ml-predictor`
+### Przygotowanie środowiska venv
 
+1. Upewnij się, że masz zainstalowane biblioteki:
 
-* Montuje lokalny model `model.pkl` do kontenera,
-* Uruchamia plik `main.py`,
-* Jest podłączony do tej samej sieci co inne usługi.
+   ```bash
+   pip install mlflow scikit-learn pandas
+   ```
+2. Uruchom lokalnie MLflow Tracking Server:
 
----
+   ```bash
+   mlflow ui
+   ```
 
-### Krok 2. Implementacja `main.py`
-
-1. W pliku `main.py` przygotuj prostą aplikację (np. w **FastAPI**), która:
-
-   * ładuje model z `model.pkl`,
-   * wystawia endpoint `/predict`,
-   * przyjmuje dane w formacie JSON i zwraca przewidywaną etykietę.
-
+   Następnie wejdź w przeglądarce na `http://127.0.0.1:5000`.
 
 ---
 
-### Krok 3. Uruchomienie kontenera
+### Zadania do wykonania
 
-Uruchom tylko profil `prediction`:
+#### Część A: Trening modelu
 
-```bash
-docker compose --profile prediction up --build
-```
+* Użyj danych wejściowych `area_m2` oraz `rooms` do przewidywania ceny mieszkania (`price_total_zl`).
+* Wytrenuj model regresji liniowej (`LinearRegression`).
+* Zaloguj do MLflow:
+
+  * parametry (np. użyte cechy, liczba próbek),
+  * metryki (`r2`, współczynniki regresji, wyraz wolny),
+  * sam model.
+
+#### Część B: Zapis i wczytanie modelu
+
+* Zapisz model zarówno lokalnie w pliku `model.pkl`, jak i do MLflow (`mlflow.sklearn.log_model`).
+* Napisz funkcję `load_model()`, która:
+
+  * sprawdza, czy model istnieje lokalnie,
+  * jeśli nie, trenuje go od nowa.
+
+#### Część C: Predykcje
+
+* Napisz funkcję `predict_price(area_m2, rooms)`, która przewiduje cenę na podstawie trenowanego modelu.
+* Sprawdź model na przykładowych danych:
+
+  * 50 m², 2 pokoje
+  * 70 m², 3 pokoje
+  * 30 m², 1 pokój
+  * 100 m², 4 pokoje
+
+#### Część D: Analiza wyników
+
+* Uruchom MLflow UI i sprawdź:
+
+  * jakie wartości miały współczynniki modelu,
+  * jak zmieniały się metryki,
+  * czy zapisany model da się pobrać i użyć ponownie.
 
 ---
 
-### Krok 4. Testowanie API
+### Rozszerzenie (dla chętnych)
 
-1. Sprawdź, czy API działa:
-
----
-
-### Podsumowanie
-
-1. Zaimplementuj plik `main.py` tak, aby poprawnie ładował model i wystawiał API.
-2. Uruchom `ml-predictor` i przetestuj predykcje lokalnie.
-3. (Dla chętnych) Dodaj obsługę logowania wyników predykcji do **MLflow**, aby śledzić, jakie dane i predykcje zostały wykonane.
+* Dodaj dodatkowe cechy do modelu (np. lokalizacja mieszkania).
+* Zmień model na `RandomForestRegressor` i porównaj wyniki.
+* Uruchom **eksperymenty z różnymi hiperparametrami** (np. liczba epok, batch_size) i porównaj je w MLflow.
 
 ---
 
+**Efekt końcowy**:
+Masz model regresji liniowej, którego wyniki są **reprodukowalne i śledzone w MLflow**, z możliwością przewidywania cen mieszkań na podstawie powierzchni i liczby pokoi.

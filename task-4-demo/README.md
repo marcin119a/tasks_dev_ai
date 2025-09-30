@@ -22,7 +22,7 @@ Twoim zadaniem jest **uruchomić i przetestować kontener `ml-predictor`**, któ
 
 ### Krok 2. Implementacja `main.py`
 
-1. W pliku `main.py` przygotuj prostą aplikację (np. w **FastAPI**), która:
+1. W pliku `main.py` przygotuj prostą aplikację (**FastAPI**), która:
 
    * ładuje model z `model.pkl`,
    * wystawia endpoint `/predict`,

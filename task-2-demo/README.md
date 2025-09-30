@@ -54,7 +54,6 @@ Plik CSV powinien zawierać kolumny:
 ```python
   offer.rooms, offer.area_m2, offer.photos, offer.locality, offer.street, offer.property_type, offer.city
 ```
-### 4.1 Utworzenie głównego pliku aplikacji (main.py)
 
 ## Krok 5: Uruchomienie aplikacji
 
@@ -102,7 +101,7 @@ FastAPIProject/
 ├── main.py              # Główna aplikacja FastAPI
 ├── models.py            # Modele danych
 ├── database.py          # Konfiguracja bazy danych
-├── ml.py               # Moduł machine learning
+├── train.py               # Moduł machine learning
 ├── test_main.py        # Testy
 ├── requirements.txt    # Zależności
 ├── data/

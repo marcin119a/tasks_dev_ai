@@ -66,24 +66,7 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
 ## Krok 7: Testowanie API
 
-### 7.1 Przykładowe zapytania curl
-```bash
-# Predykcja ceny
-curl -X POST "http://localhost:8000/predict/" \
-     -H "Content-Type: application/json" \
-     -d '{"area_m2": 50.0, "rooms": 2}'
-
-# Dodanie oferty
-curl -X POST "http://localhost:8000/offers/" \
-     -H "Content-Type: application/json" \
-     -d '{"locality": "Warszawa Centrum", "rooms": 2, "area_m2": 50.0, "description": "Ładne mieszkanie"}'
-
-# Pobranie ofert
-curl -X GET "http://localhost:8000/offers/"
-
-# Statystyki
-curl -X GET "http://localhost:8000/offers/stats/summary"
-```
+Przygotuj testy API z użyciem  http://localhost:8000/docs
 
 ## Krok 8: Rozszerzenia (opcjonalne)
 

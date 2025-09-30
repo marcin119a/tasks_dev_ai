@@ -1,0 +1,11 @@
+__pycache__/
+.venv/
+*.db
+*.pkl
+*.csv
+*.json
+*.log
+*.txt
+*.md
+*.yml
+*.yaml

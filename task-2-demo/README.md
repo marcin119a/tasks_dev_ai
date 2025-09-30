@@ -87,8 +87,8 @@ curl -X GET "http://localhost:8000/offers/stats/summary"
 ## Krok 8: Rozszerzenia (opcjonalne)
 
 ### 8.1 Dodatkowe endpointy
-- `PUT /offers/{offer_id}` - aktualizacja oferty
-- `DELETE /offers/{offer_id}` - usuwanie oferty
+- `POST /offers/{offer_id}` - aktualizacja oferty
+- `POST /offers/{offer_id}` - usuwanie oferty
 - `GET /model/info` - informacje o modelu ML
 - `POST /model/retrain` - ponowne trenowanie modelu
 

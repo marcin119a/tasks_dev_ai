@@ -49,7 +49,11 @@ Plik CSV powinien zawierać kolumny:
 ### 3.2 Utworzenie modułu ML (ml.py)
 
 ## Krok 4: Implementacja API
+* Predykcja modelu liniowego dla cech:
 
+```python
+  offer.rooms, offer.area_m2, offer.photos, offer.locality, offer.street, offer.property_type, offer.city
+```
 ### 4.1 Utworzenie głównego pliku aplikacji (main.py)
 
 ## Krok 5: Uruchomienie aplikacji

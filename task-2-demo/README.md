@@ -41,10 +41,8 @@ httpx
 
 ### 3.1 Przygotowanie danych (data/adresowo_wroclaw_all.csv)
 Plik CSV powinien zawierać kolumny:
-- `locality` - dzielnica
-- `rooms` - liczba pokoi
-- `area_m2` - powierzchnia w m²
-- `price_total_zl` - cena całkowita w PLN
+- rooms, area_m2, photos, locality, street, property_type, city
+
 
 ### 3.2 Utworzenie modułu ML (ml.py)
 

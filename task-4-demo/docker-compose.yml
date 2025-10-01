@@ -1,0 +1,47 @@
+services:
+  mlflow:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlruns:/app/mlruns
+      - ./data:/app/data
+      - ./artifacts:/app/artifacts
+    environment:
+      - MLFLOW_BACKEND_STORE_URI=file:///app/mlruns
+    command: mlflow ui --host 0.0.0.0 --port 5000
+    networks:
+      - ml-network
+  ml-trainer:
+    build: .
+    volumes:
+      - ./mlruns:/app/mlruns
+      - ./data:/app/data
+      - ./artifacts:/app/artifacts
+      - .:/app
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+    depends_on:
+      - mlflow
+    networks:
+      - ml-network
+    profiles:
+      - training
+    command: python train.py
+  ml-predictor:
+    build: .
+    volumes:
+      - ./mlruns:/app/mlruns
+      - ./data:/app/data
+      - ./artifacts:/app/artifacts
+    depends_on:
+      - mlflow
+    networks:
+      - ml-network
+    profiles:
+      - prediction
+    command: python main.py
+
+networks:
+  ml-network:
+    driver: bridge

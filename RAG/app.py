@@ -15,13 +15,14 @@ vectordb = Chroma(persist_directory=chroma_path, embedding_function=embedding)
 # 3. Define Gradio interface function
 def search_offers(query):
     results = vectordb.similarity_search(query, k=3)
-    return "\n---\n".join([r.page_content for r in results])
+    return "\n--\n".join([r.page_content for r in results])
+
 
 # 4. Launch Gradio UI
 iface = gr.Interface(
     fn=search_offers,
     inputs=gr.Textbox(label="Twoje zapytanie"),
-    outputs=gr.Textbox(label="Najlepsze dopasowania"),
+    outputs=gr.TextArea(label="Najlepsze dopasowania"),
     title="Wyszukiwarka ofert Adresowo (RAG)"
 )
 

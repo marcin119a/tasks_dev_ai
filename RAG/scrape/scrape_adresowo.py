@@ -11,7 +11,7 @@ HEADERS = {
 
 # Step 1: Gather offer URLs
 offer_urls = []
-for page in range(1, 12):  # You can increase this range if needed
+for page in range(1, 2):  # You can increase this range if needed
     url = BASE_LIST_URL.format(page)
     resp = requests.get(url, headers=HEADERS)
     resp.raise_for_status()
@@ -76,7 +76,7 @@ for url in offer_urls:
     # time.sleep(1)  # Optional delay
 
 # Step 3: Save to CSV
-output_file = "adresowo_offers_detail.csv"
+output_file = "adresowo_descriptions/adresowo_offers_detail.csv"
 if results:
     with open(output_file, 'w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=results[0].keys())

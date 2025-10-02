@@ -1,6 +1,15 @@
 version: "3.8"
 
 services:
+  scrapper:
+    build: ./scrape
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ./adresowo_descriptions:/app/adresowo_descriptions
+    command: python scrape/scrape_adresowo.py
+    networks:
+      - rag-network
   rag-app:
     build: .
     ports:
@@ -9,4 +18,7 @@ services:
       - .env
     volumes:
       - ./adresowo_descriptions:/app/adresowo_descriptions
-    command: ./start.sh
+    command: python app.py
+networks:
+  rag-network:
+    driver: bridge

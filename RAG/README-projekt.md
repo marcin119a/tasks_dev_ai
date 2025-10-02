@@ -28,7 +28,6 @@ Retrieval-Augmented Generation (RAG) app built with **LangChain**, **Chroma**, a
 ├── app.py # Gradio app interface
 ├── build_files.py # Downloads and stores property descriptions as .txt files
 ├── build_vectorstore.py # Builds vector DB from description chunks
-├── start.sh # Launches build + app
 ├── requirements.txt
 ├── Dockerfile
 ├── docker-compose.yml

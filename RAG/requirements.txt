@@ -1,0 +1,14 @@
+langchain
+langchain-community
+langchain-huggingface
+chromadb
+gradio
+sentence-transformers
+pypdf
+unstructured
+python-docx
+torch
+pandas
+python-dotenv
+langchain-chroma
+openai

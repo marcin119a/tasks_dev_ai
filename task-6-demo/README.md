@@ -16,8 +16,6 @@ Twoim zadaniem jest zastąpienie obecnego tłumaczenia tekstu nową funkcją, kt
 
 Zaimplementuj nową funkcję.
 
-
-
 ---
 
 ## Krok 3. Uruchom środowisko
@@ -55,3 +53,8 @@ Oczekiwany wynik:
 ```
 
 ---
+
+## Zadanie dodatkowe: 
+Twoim zadaniem jest wykorzystanie modelu z W&B, która wykonuje **klasyfikacje tekstu dla adresowo.pl** przy użyciu BERT-a.
+
+* Uruchom berta z naszego W&B fine-tuningowego na tekstach z adresowo.pl. 

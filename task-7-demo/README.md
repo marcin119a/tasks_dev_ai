@@ -63,4 +63,5 @@ Dodaj do istniejącego `docker-compose.yml` serwis aplikacji:
 
 ## 🔹 Krok 7. Zadania do wykonania
 
-1. Zbuduj i uruchom serwis:
+1. Zbuduj i uruchom serwis. 
+2. Sprawdz w Gradio jak działa wyszukiwarka.

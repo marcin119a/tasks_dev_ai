@@ -10,7 +10,7 @@ Twoim zadaniem jest rozszerzenie istniejącego systemu scrapowania o **nowe mias
 
 ---
 
-### 2. Dodaj **CronJob**, aby scrapowanie uruchamiało się codziennie o 2:00 dla Łodzi
+### 2. Dodaj do **CronJob**, aby scrapowanie uruchamiało się codziennie o 2:00 dla Łodzi.
 
 
 ### 3. Wdróż zmiany w klastrze. 

@@ -9,3 +9,4 @@ spec:
     - protocol: TCP
       port: 80 # Service wystawia się na klastrze 
       targetPort: 8000 # port wewnątrz kontenera
+  type: NodePort

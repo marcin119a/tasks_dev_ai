@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: fastapi-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fastapi
+  template:
+    metadata:
+      labels:
+        app: fastapi
+    spec:
+      containers:
+        - name: fastapi
+          image: marcin119a/fastapi-k8s-demo:latest
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - name: fastapi-volume
+              mountPath: /app/data
+      volumes:
+        - name: fastapi-volume
+          persistentVolumeClaim:
+            claimName: fastapi-pvc

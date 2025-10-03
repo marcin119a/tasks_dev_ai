@@ -1,5 +1,3 @@
----
-
 ## 📝 Zadanie: Dodanie nowego miasta do scrapera (Łódź)
 
 Twoim zadaniem jest rozszerzenie istniejącego systemu scrapowania o **nowe miasto – Łódź**.

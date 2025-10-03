@@ -31,9 +31,3 @@
    ```
 
 ---
-
-✅ Po wykonaniu zadań uczestnicy będą mieli prostą aplikację Gradio działającą w Kubernetesie, dostępną w przeglądarce tak jak prawdziwe mikroserwisy.
-
----
-
-Chcesz, żebym przygotował Ci to od razu jako **slajd w PowerPoint** w Twojej prezentacji *Podstawy Kubernetesa*?

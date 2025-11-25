@@ -1,7 +1,7 @@
 # Zadanie: API Predykcji Cen Mieszkań z FastAPI i Machine Learning
 
 ## Opis projektu
-Celem zadania jest stworzenie API do predykcji cen mieszkań we Wrocławiu z wykorzystaniem FastAPI, SQLAlchemy, i modelu uczenia maszynowego (Random Forest Regression). Projekt obejmuje bazę danych, endpoints RESTful, oraz integrację z modelem ML.
+Celem zadania jest stworzenie API do predykcji cen mieszkań w Łodzi z wykorzystaniem FastAPI, SQLAlchemy, i modelu uczenia maszynowego (Random Forest Regression). Projekt obejmuje bazę danych, endpoints RESTful, oraz integrację z modelem ML.
 
 ## Wymagania wstępne
 - Python 3.8+
@@ -16,42 +16,23 @@ Celem zadania jest stworzenie API do predykcji cen mieszkań we Wrocławiu z wyk
 ### 1.2 Utworzenie wirtualnego środowiska
 
 ### 1.3 Utworzenie pliku requirements.txt
-```txt
-pandas
-numpy
-scikit-learn
-fastapi
-uvicorn
-sqlalchemy
-pydantic
-httpx
-```
+
 
 ### 1.4 Instalacja zależności pip install -r requirements.txt
  
-
 ## Krok 2: Konfiguracja bazy danych
 
-### 2.1 Utworzenie pliku database.py
+### 2.1 Utworzenie pliku db/database.py
 
-### 2.2 Utworzenie modeli danych (models.py)
+### 2.2 Utworzenie modeli danych (db/models.py)
 
 
 ## Krok 3: Implementacja modelu ML
 
-### 3.1 Przygotowanie danych (data/adresowo_wroclaw_all.csv)
-Plik CSV powinien zawierać kolumny:
-- rooms, area_m2, photos, locality, street, property_type, city
-
-
-### 3.2 Utworzenie modułu ML (ml.py)
+### 3.1 Przygotowanie danych (data/adresowo_lodz_all.csv)
 
 ## Krok 4: Implementacja API
-* Predykcja modelu liniowego dla cech:
-
-```python
-  offer.rooms, offer.area_m2, offer.photos, offer.locality, offer.street, offer.property_type, offer.city
-```
+* Predykcja modelu liniowego dla cech zdefiniowanych:
 
 ## Krok 5: Uruchomienie aplikacji
 
@@ -68,26 +49,9 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
 Przygotuj testy API z użyciem  http://localhost:8000/docs
 
-## Krok 8: Rozszerzenia (opcjonalne)
+## Krok 8: Rozszerzenia
 
 ### 8.1 Dodatkowe endpointy
-- `POST /offers/{offer_id}` - aktualizacja oferty
-- `POST /offers/{offer_id}` - usuwanie oferty
-- `GET /model/info` - informacje o modelu ML
 - `POST /model/retrain` - ponowne trenowanie modelu
+- `GET /model/info` - informacje o modelu ML
 
-## Struktura finalnego projektu
-```
-FastAPIProject/
-├── main.py              # Główna aplikacja FastAPI
-├── models.py            # Modele danych
-├── database.py          # Konfiguracja bazy danych
-├── train.py               # Moduł machine learning
-├── test_main.py        # Testy
-├── requirements.txt    # Zależności
-├── data/
-│   └── adresowo_wroclaw_all.csv  # Dane treningowe
-├── offers.db          # Baza danych SQLite
-├── model.pkl          # Wytrenowany model ML
-└── ZADANIE.md         # Ten dokument
-```

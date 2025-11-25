@@ -1,7 +1,7 @@
 # Zadanie: API Predykcji Cen Mieszkań z FastAPI i Machine Learning
 
 ## Opis projektu
-Celem zadania jest stworzenie API do predykcji cen mieszkań w Łodzi z wykorzystaniem FastAPI, SQLAlchemy, i modelu uczenia maszynowego (Random Forest Regression). Projekt obejmuje bazę danych, endpoints RESTful, oraz integrację z modelem ML.
+Celem zadania jest stworzenie API do predykcji cen mieszkań w Łodzi z wykorzystaniem FastAPI, SQLAlchemy, i modelu uczenia maszynowego. Projekt obejmuje bazę danych, endpoints RESTful, oraz integrację z modelem ML.
 
 ## Wymagania wstępne
 - Python 3.8+

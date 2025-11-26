@@ -1,72 +1,80 @@
-Zadanie: Analiza sentymentu + generowanie audio z użyciem BERT-a, Celery, Redis i SunoModel
+# **Zadanie: Analiza sentymentu + generowanie audio z użyciem Celery, Redis i SunoModel**
 
-W tym zadaniu wykorzystasz Celery oraz Redis do uruchamiania asynchronicznych zadań, takich jak:
+W tym zadaniu wykorzystasz **Celery** oraz **Redis** do uruchamiania asynchronicznych zadań, takich jak:
 
-Analiza sentymentu z użyciem BERT-a
+* **Analiza sentymentu z użyciem BERT-a**
+* **Prosta klasyfikacja tekstów Adresowo (bez BERT-a)**
+* **Generowanie audio z tekstu przy użyciu `suno/bark-small`**
 
-Prosta klasyfikacja tekstów Adresowo (bez BERT-a)
+---
 
-Generowanie audio z tekstu przy użyciu suno/bark-small
+## **Krok 1. Przygotowanie projektu**
 
-Krok 1. Przygotowanie projektu
+Masz już gotowy projekt z **Celery** i **Redis**.
 
-Masz już gotowy projekt z Celery i Redis.
+---
 
-Krok 2. Zmodyfikuj kod tasks.py
+## **Krok 2. Zmodyfikuj kod `tasks.py`**
 
-Twoim zadaniem jest zastąpienie obecnego tłumaczenia trzema taskami:
+Twoim zadaniem jest zastąpienie dotychczasowego tłumaczenia **trzema nowymi taskami**:
 
-analiza sentymentu (BERT)
+1. **Analiza sentymentu (BERT)**
+2. **Prosta klasyfikacja Adresowo (bez BERT-a)**
+3. **Generowanie audio (Suno/Bark)**
 
-prosta klasyfikacja Adresowo (bez BERT-a)
+---
 
-generowanie audio (Suno/Bark)
+## **1. Generowanie audio – Suno/Bark-Small**
 
+Model do generowania audio z tekstu:
+🔗 **Google Colab:**
+[https://colab.research.google.com/drive/1I8BhvJE7XZf4F6WMxZ2dK0KHTX8IuzLl?usp=sharing](https://colab.research.google.com/drive/1I8BhvJE7XZf4F6WMxZ2dK0KHTX8IuzLl?usp=sharing)
 
+---
 
+## **Krok 3. Uruchom środowisko**
 
+### **1. Zbuduj kontenery:**
 
-# -------------------------
-# 1. GENEROWANIE AUDIO – SUNO/BARK-SMALL
-# -------------------------
-
-# ładowanie modelu bark-small: https://colab.research.google.com/drive/1I8BhvJE7XZf4F6WMxZ2dK0KHTX8IuzLl?usp=sharing
-
-Krok 3. Uruchom środowisko
-
-Zbuduj kontenery:
-
+```bash
 docker compose build
+```
 
+### **2. Uruchom projekt:**
 
-Uruchom projekt:
-
+```bash
 docker compose up
+```
 
+### **3. Sprawdź logi workera Celery:**
 
-Sprawdź logi workera Celery:
-
+```bash
 docker compose logs worker
+```
 
-Krok 4. Przetestuj zadania
+---
 
-1. Generowanie audio z tekstu (suno/bark-small)
+## **Krok 4. Przetestuj zadania**
+
+### **1. Generowanie audio z tekstu (`suno/bark-small`)**
+
+```bash
 curl -X POST localhost:8000/audio \
   -H "Content-Type: application/json" \
   -d '{"text": "Cześć, to jest test syntezy mowy."}'
+```
 
+### **Oczekiwany wynik:**
 
-Oczekiwany wynik:
-
+```json
 {"audio_file": "audio_1234abcd5678ef.wav"}
+```
 
+Plik WAV zapisuje się w katalogu:
 
-Plik WAV zapisuje się w /data/audio.
+```
+/data/audio
+```
 
-## Zadanie dodatkowe (rozszerzone)
-
-Zaimplementuj endpoint, który:
-
-przyjmuje tekst
-generuje audio
+---
 

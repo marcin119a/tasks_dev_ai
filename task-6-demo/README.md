@@ -1,4 +1,4 @@
-# **Zadanie: Analiza sentymentu + generowanie audio z użyciem Celery, Redis i SunoModel**
+# **Zadanie: Generowanie audio z użyciem Celery, Redis i SunoModel**
 
 W tym zadaniu wykorzystasz **Celery** oraz **Redis** do uruchamiania asynchronicznych zadań, takich jak:
 

@@ -17,8 +17,6 @@ Masz już gotowy projekt z **Celery** i **Redis**.
 
 Twoim zadaniem jest zastąpienie dotychczasowego tłumaczenia **trzema nowymi taskami**:
 
-1. **Analiza sentymentu (BERT)**
-2. **Prosta klasyfikacja Adresowo (bez BERT-a)**
 3. **Generowanie audio (Suno/Bark)**
 
 ---

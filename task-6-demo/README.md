@@ -2,7 +2,6 @@
 
 W tym zadaniu wykorzystasz **Celery** oraz **Redis** do uruchamiania asynchronicznych zadań, takich jak:
 
-* **Analiza sentymentu z użyciem BERT-a**
 * **Prosta klasyfikacja tekstów Adresowo (bez BERT-a)**
 * **Generowanie audio z tekstu przy użyciu `suno/bark-small`**
 

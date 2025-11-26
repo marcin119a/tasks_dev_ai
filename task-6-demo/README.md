@@ -1,60 +1,72 @@
-# Zadanie: Analiza sentymentu z użyciem BERT-a, Celery i Redis
+Zadanie: Analiza sentymentu + generowanie audio z użyciem BERT-a, Celery, Redis i SunoModel
 
-W tym zadaniu wykorzystasz **kolejkę zadań Celery** oraz **brokera Redis**, aby uruchomić asynchroniczną analizę sentymentu na tekście.
-Zamiast tłumaczenia (pipeline `"translation_en_to_de"`), będziesz używać **pipeline `"sentiment-analysis"`** z modelu BERT.
+W tym zadaniu wykorzystasz Celery oraz Redis do uruchamiania asynchronicznych zadań, takich jak:
 
----
+Analiza sentymentu z użyciem BERT-a
 
-## Krok 1. Przygotowanie projektu
+Prosta klasyfikacja tekstów Adresowo (bez BERT-a)
+
+Generowanie audio z tekstu przy użyciu suno/bark-small
+
+Krok 1. Przygotowanie projektu
 
 Masz już gotowy projekt z Celery i Redis.
----
 
-## Krok 2. Zmodyfikuj kod `tasks.py`
+Krok 2. Zmodyfikuj kod tasks.py
 
-Twoim zadaniem jest zastąpienie obecnego tłumaczenia tekstu nową funkcją, która wykonuje **analizę sentymentu** przy użyciu BERT-a.
+Twoim zadaniem jest zastąpienie obecnego tłumaczenia trzema taskami:
 
-Zaimplementuj nową funkcję.
+analiza sentymentu (BERT)
 
----
+prosta klasyfikacja Adresowo (bez BERT-a)
 
-## Krok 3. Uruchom środowisko
+generowanie audio (Suno/Bark)
 
-1. Zbuduj obrazy:
 
-   ```bash
-   docker compose build
-   ```
 
-2. Uruchom wszystkie usługi:
 
-   ```bash
-   docker compose up
-   ```
 
-3. Sprawdź logi workera:
+# -------------------------
+# 1. GENEROWANIE AUDIO – SUNO/BARK-SMALL
+# -------------------------
 
-   ```bash
-   docker compose logs worker
-   ```
+# ładowanie modelu bark-small: https://colab.research.google.com/drive/1I8BhvJE7XZf4F6WMxZ2dK0KHTX8IuzLl?usp=sharing
 
-Powinieneś zobaczyć, że worker Celery wystartował i czeka na zadania.
+Krok 3. Uruchom środowisko
 
----
+Zbuduj kontenery:
 
-## Krok 4. Przetestuj zadanie
+docker compose build
 
-Uruchom odpowiedni curl do przetestowania zadania. 
+
+Uruchom projekt:
+
+docker compose up
+
+
+Sprawdź logi workera Celery:
+
+docker compose logs worker
+
+Krok 4. Przetestuj zadania
+
+1. Generowanie audio z tekstu (suno/bark-small)
+curl -X POST localhost:8000/audio \
+  -H "Content-Type: application/json" \
+  -d '{"text": "Cześć, to jest test syntezy mowy."}'
+
 
 Oczekiwany wynik:
 
-```json
-{"label": "POSITIVE", "score": 0.9992}
-```
+{"audio_file": "audio_1234abcd5678ef.wav"}
 
----
 
-## Zadanie dodatkowe: 
-Twoim zadaniem jest wykorzystanie modelu z W&B, która wykonuje **klasyfikacje tekstu dla adresowo.pl** przy użyciu BERT-a.
+Plik WAV zapisuje się w /data/audio.
 
-* Uruchom berta z naszego W&B fine-tuningowego na tekstach z adresowo.pl. 
+## Zadanie dodatkowe (rozszerzone)
+
+Zaimplementuj endpoint, który:
+
+przyjmuje tekst
+generuje audio
+

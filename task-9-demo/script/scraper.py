@@ -39,12 +39,9 @@ def scrape_city(city, pages, delay, output_dir):
             resp = requests.get(url, headers=headers)
             resp.raise_for_status()
             soup = BeautifulSoup(resp.text, 'html.parser')
-            items = soup.select('section.search-results__item')
-            
-            for item in items:
-                data_url = item.get('data-url')
-                if data_url:
-                    offer_urls.append(f'https://adresowo.pl{data_url}')
+            for a in soup.select('a[href^="/o/"]'):
+                href = a['href'].split('?')[0]
+                offer_urls.append(f'https://adresowo.pl{href}')
             
             time.sleep(delay)  # Be nice to the server
             

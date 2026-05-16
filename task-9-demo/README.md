@@ -11,7 +11,7 @@ Twoim zadaniem jest rozszerzenie istniejącego systemu scrapowania o **nowe mias
 ---
 
 ### 2. Dodaj do **CronJob**, aby scrapowanie uruchamiało się codziennie o 2:00 dla Łodzi.
-
+kubectl apply -k k8s/
 
 ### 3. Wdróż zmiany w klastrze. 
 
